@@ -1,0 +1,24 @@
+<% unless @result.nil? %>
+	<div class="movieTitle">
+		Movie : <%= params[:movietitle] %>	
+	</div>
+  
+  <div class="moviePoster">
+	<img src ="<%=@result%>"> 
+	</div>
+
+
+
+<% end %>
+
+
+
+
+
+ <form action="/lookup"> 
+ <input type="text" name="movietitle" placeholder ="Movie Title Here"> 
+
+   <input type="submit" value="Go">
+
+
+</form>
