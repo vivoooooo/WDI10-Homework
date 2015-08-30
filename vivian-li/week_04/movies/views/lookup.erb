@@ -1,14 +1,13 @@
-<% unless @result.nil? %>
-	<div class="movieTitle">
-		Movie : <%= params[:movietitle] %>	
-	</div>
-  
+  <% unless @poster.nil? %>
+
   <div class="moviePoster">
-	<img src ="<%=@result%>"> 
-	</div>
+	<img src ="<%=@poster%>"> 
+ </div>
+<p>Movie : <%=@title1%></p>
+    <p>IMDBID : <%=@imdbid %></p>
+    <p>Message: <%=@message%></p>
 
-
-
+    
 <% end %>
 
 
