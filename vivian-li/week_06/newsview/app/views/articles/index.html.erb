@@ -1,0 +1,14 @@
+<h2>Articles</h2>
+
+<ul>
+	<% @articles.each do |article| %>
+	<li><%= article.headline_english%></li>
+	<li><%= image_tag article.screen_capture, :class => 'thumb' %></li>
+	<li>Article Headline : <%= link_to article.headline_english, article %></li>
+	<li>Source: <%= article.source_english %></li>
+	<li>Date published: <%= article.date_published.strftime "%A, %e %B %Y" %></li>
+	<li>Link: <%= article.link %></li>
+
+	<% end %>
+
+</ul>

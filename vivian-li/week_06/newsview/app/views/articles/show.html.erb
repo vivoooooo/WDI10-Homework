@@ -1,0 +1,18 @@
+<h2>Headline : <%= @article.headline_english%></h2>	
+
+	<ul>
+	<li><%= image_tag @article.screen_capture, :class => 'feature' %></li>
+	<li>Headline: <%= @article.headline_english %></li>
+	<li>Headline (foreign): <%= @article.headline_other_language%></li>	
+	<li>Author English : <%= @article.author_english %></li>	
+	<li>Source : <%= @article.source_english  %></li>	
+	<li>Nationality: <%= @artist.nationality %></li>
+	<li>Date Published : <%= @article.date_published.strftime "%A, %e %B %Y" if @article.date_published %></li>
+	<li>Date Accessed : <%= @article.date_accessed.strftime "%A, %e %B %Y" if @article.date_accessed %></li>
+	<li>link: <%= @article.link %></li>
+	<li>Article Text : <%= @article.article_text_english %></li>
+	<li>Keywords : <%=@article.keywords %></li> 
+	<li>Issues : <%=@article.issues %></li>
+	<li>My notes : <%=@article.own_notes%></li>
+	</ul>
+
