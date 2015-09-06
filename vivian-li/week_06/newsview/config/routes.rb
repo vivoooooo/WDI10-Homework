@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
- resources :articles, :people
+ resources :articles, :people, :organisations 
 end

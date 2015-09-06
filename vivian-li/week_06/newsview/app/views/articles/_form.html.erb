@@ -1,0 +1,84 @@
+<%= form_for @article do |f| %>
+ <p>
+	<%= f.label :headline_english %>
+	<%= f.text_field :headline_english %>
+ </p>
+
+ <p>
+	<%= f.label :headline_other_language  %>
+	<%= f.text_field :headline_other_language %>
+ </p>
+
+
+  <p>
+	<%= f.label :author_english  %>
+	<%= f.text_field :author_english %>
+  </p>
+
+   <p>
+	<%= f.label :author_other_language %>
+	<%= f.text_field :author_other_language %>
+   </p>
+
+
+   <p>
+	<%= f.label :source_english %>
+	<%= f.text_field :source_english %>
+   </p>
+
+    <p>
+	<%= f.label :author_other_language %>
+	<%= f.text_field :author_other_language %>
+   </p>
+
+     <p>
+	<%= f.label :date_published, 'Date Published' %>
+	<%= f.date_field :date_published, :placeholder => 'YYYY-MM-DD' %>
+    </p>
+
+
+     <p>
+	<%= f.label :date_accessed, 'Date Accessed' %>
+	<%= f.date_field :date_accessed, :placeholder => 'YYYY-MM-DD' %>
+    </p>
+
+    <p>
+	<%= f.label :link %>
+	<%= f.text_field :link%>
+   </p>
+
+    <p>
+	<%= f.label :article_text_english %>
+	<%= f.text_field :article_text_english %>
+   </p>
+
+    <p>
+	<%= f.label :article_other_language %>
+	<%= f.text_field :article_other_language %>
+   </p>
+
+    <p>
+	<%= f.label :screen_capture %>
+	<%= f.text_field :screen_capture %>
+   </p>
+
+   <p>
+	<%= f.label :keywords %>
+	<%= f.text_field :keywords %>
+   </p>
+
+   <p>
+	<%= f.label :issues %>
+	<%= f.text_field :issues %>
+   </p>
+
+   <p>
+	<%= f.label :own_notes %>
+	<%= f.text_field :own_notes %>
+   </p>
+
+
+<%= f.submit %>
+
+<% end %>
+

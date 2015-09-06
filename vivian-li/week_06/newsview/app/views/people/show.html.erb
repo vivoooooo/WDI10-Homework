@@ -1,0 +1,12 @@
+<h2>Name : <%= @person.name %></h2>	
+	<ul>
+	<%= image_tag @person.image, :class => 'feature' %>
+	<li>Birth date : <%= @person.birthday %></li>
+	<li>Profile : <%= @person.profile %></li>
+	</ul>
+
+
+<div class="controls">
+		<%= link_to 'Edit', edit_person_path(@person) %>
+		<%= button_to 'Delete', @person, :method => 'delete', :data => { :confirm => "Are you sure?" } %>
+</div>	

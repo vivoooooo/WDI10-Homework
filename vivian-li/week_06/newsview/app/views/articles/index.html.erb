@@ -2,12 +2,11 @@
 
 <ul>
 	<% @articles.each do |article| %>
-	<li><%= article.headline_english%></li>
-	<li><%= image_tag article.screen_capture, :class => 'thumb' %></li>
-	<li>Article Headline : <%= link_to article.headline_english, article %></li>
+	<li><%= link_to article.headline_english, article %></li>
+	<%= image_tag article.screen_capture, :class => 'thumb' %>
 	<li>Source: <%= article.source_english %></li>
 	<li>Date published: <%= article.date_published.strftime "%A, %e %B %Y" %></li>
-	<li>Link: <%= article.link %></li>
+	<li>Link: <%= link_to article.link, article.link %></li>
 
 	<% end %>
 

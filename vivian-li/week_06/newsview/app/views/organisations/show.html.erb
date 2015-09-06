@@ -1,0 +1,11 @@
+<h2>Name : <%= @organisation.name %></h2>	
+	<ul>
+	<%= image_tag @organisation.image, :class => 'feature' %>
+	<li>Start Year: <%= @organisation.year %></li>
+	<li>Profile : <%= @organisation.profile %></li>
+	</ul>
+
+<div class="controls">
+		<%= link_to 'Edit', edit_organisation_path(@organisation) %>
+		<%= button_to 'Delete', @organisation, :method => 'delete', :data => { :confirm => "Are you sure?" } %>
+</div>	

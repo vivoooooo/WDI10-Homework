@@ -1,0 +1,14 @@
+<h2>People</h2>
+
+<ul>
+	<% @people.each do |person| %>
+	<li><%= link_to person.name, person %></li>
+	<%= image_tag person.image, :class => 'thumb' %>
+	<li>Birth date: <%= person.birthday %></li>
+	<li>Profile: <%= person.profile %></li>
+
+	<% end %>
+
+</ul>	
+
+

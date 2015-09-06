@@ -1,0 +1,10 @@
+<h2>Organisations</h2>
+
+<ul>
+	<%= @organisations.each do |org| %>
+	<li><%= link_to org.name, org %></li>
+	<%= image_tag org.image, :class => 'thumb' %>
+	<li> Year established : <%= org.year%></li>
+	<li>Profile : <%= org.profile %></li>
+	<% end %>
+</ul>		
