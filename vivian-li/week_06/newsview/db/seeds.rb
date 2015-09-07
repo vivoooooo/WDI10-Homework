@@ -15,8 +15,18 @@ o1 = Organisation.create(:name => "The Liberal Party of Australia", :year => "19
 
 o2 = Organisation.create(:name => "Liberal National Party of Queensland", :year => "2008", :image => "https://upload.wikimedia.org/wikipedia/en/b/ba/Lnp_logo.PNG", :profile => "The National Party of Australia (also known as The Nationals or simply, The Nats) is an Australian political party. Traditionally representing graziers, farmers, and rural voters generally, it began as the Australian Country Party, and then adopted the name the National Country Party in 1975. The party's name was changed to the National Party of Australia in 1982. The party is commonly referred to as 'The Nationals'. Federally, in New South Wales, and to an extent Victoria and historically in Western Australia, it has generally been the minor party in a centre-right Coalition with the Liberal Party of Australia in government.")
 
+User.destroy_all
+u1 = User.create :name => 'Craigsy', :email => 'craigsy@gmail.com', :password => 'chicken'
+u2 = User.create :name => 'Jonesy', :email => 'jonesy@gmail.com', :password => 'chicken'
 
 
+
+
+a1.people << p1 << p2 
+a1.organisations << o1 << o2 
+
+o1.people << p1 
+o2.people << p2
 
 
 

@@ -77,6 +77,22 @@
 	<%= f.text_field :own_notes %>
    </p>
 
+   <p>
+     <%= hidden_field_tag "article[person_ids][]", nil %>
+   <% Person.all.each do |person| %>
+     <%= check_box_tag "article[person_ids][]", person.id, @article.person_ids.include?(person.id), id: dom_id(person) %>
+     <%= label_tag dom_id(person), person.name %> 
+    <% end %>  	
+   </p>
+
+	<p>
+	  <%= hidden_field_tag "article[organisation_ids][]", nil %>
+	<% Organisation.all.each do |organisation| %>
+	<%= check_box_tag "article[organisation_ids][]", organisation.id, @article.organisation_ids.include?(organisation.id), id: dom_id(organisation) %>
+	<%=  label_tag dom_id(organisation), organisation.name %>
+	<% end %>  	
+   </p>
+
 
 <%= f.submit %>
 

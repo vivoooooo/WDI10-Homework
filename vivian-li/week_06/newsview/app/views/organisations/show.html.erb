@@ -3,6 +3,12 @@
 	<%= image_tag @organisation.image, :class => 'feature' %>
 	<li>Start Year: <%= @organisation.year %></li>
 	<li>Profile : <%= @organisation.profile %></li>
+	<li> Has the following people : <ul>
+	<% @organisation.people.each do |person| %>
+		<li><%= link_to person.name, person %></li>
+		<% end %>
+		</ul>
+	</li>	
 	</ul>
 
 <div class="controls">

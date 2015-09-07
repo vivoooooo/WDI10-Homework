@@ -13,7 +13,20 @@
 	<li>Keywords : <%=@article.keywords %></li> 
 	<li>Issues : <%=@article.issues %></li>
 	<li>My notes : <%=@article.own_notes%></li>
+	<li>People : <ul>
+		<% @article.people.each do |person| %>
+		<li><%= link_to person.name, person %></li>
+		<% end %>
+		</ul>
+	</li>	
+	<li> Organisations : <ul>
+	     <% @article.organisations.each do |org| %>
+	     <li><%= link_to org.name, org %></li>
+	     <% end %>
 	</ul>
+
+
+
 
 <div class="controls">
 		<%= link_to 'Edit', edit_article_path(@article) %>

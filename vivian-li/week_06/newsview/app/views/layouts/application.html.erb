@@ -7,7 +7,18 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<%= link_to 'Home', '/' %>
+
+<nav>
+  <%= link_to 'Home', '/' %>
+  <% if @current_user.present? %>
+    <%= link_to "Edit profile", edit_user_path %>
+    <%= link_to "Logout #{ @current_user.name }", login_path, :method => 'delete', :data => { :confirm => 'Are you sure you wish to logout?' } %>
+  <% else %>
+    <%= link_to 'Create Account', new_user_path %>
+    <%= link_to 'Login', login_path %>
+  <% end %>
+</nav>
+
 <%= link_to 'Articles', articles_path %>
 <%= link_to 'New Article', new_article_path %>
 <%= link_to 'People', people_path %>
@@ -16,6 +27,7 @@
 <%= link_to 'New Organisation', new_organisation_path %>
 
 
+	
 
 <%= yield %>
 

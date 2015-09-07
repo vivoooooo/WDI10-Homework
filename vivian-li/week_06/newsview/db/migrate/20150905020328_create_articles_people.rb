@@ -4,5 +4,11 @@ class CreateArticlesPeople < ActiveRecord::Migration
       t.integer :article_id
       t.integer :person_id
     end
+
+
   end
+
+
 end
+
+

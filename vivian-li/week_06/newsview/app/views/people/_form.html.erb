@@ -19,6 +19,15 @@
 	<%= f.text_field :profile %>
 </p>
 
+<p>
+    <%= hidden_field_tag "person[organisation_ids][]", nil %>
+    <% Organisation.all.each do |organisation| %>
+    <%= check_box_tag "person[organisation_ids][]", organisation.id, @person.organisation_ids.include?(organisation.id), id: dom_id(organisation) %>
+    <%= label_tag dom_id(organisation), organisation.name %>
+    <% end %>
+</p>  
+
+
  <%= f.submit %>
 
  <% end  %>   

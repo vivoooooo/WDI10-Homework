@@ -11,7 +11,7 @@ class OrganisationsController < ApplicationController
 
 
   def new
-    @organisation = Organisation.create
+    @organisation = Organisation.new
   end
 
   def create
@@ -22,12 +22,14 @@ class OrganisationsController < ApplicationController
  
 
   def edit
-    organisation = Organisation.find params[:id]  
+    @organisation = Organisation.find params[:id]  
   end
 
    def update
     organisation = Organisation.find params[:id]
     organisation.update organisation_params
+    organisation.person_ids = params[:organisation][:person_ids]
+    organisation.save
     redirect_to organisation
    end
 
@@ -40,7 +42,7 @@ class OrganisationsController < ApplicationController
 
    private
   def organisation_params
-    params.require(:organisation).permit(:name, :year, :image, :profile, :person_id, :article_id, :organisation_id)
+    params.require(:organisation).permit(:name, :year, :image, :profile, :person_id, :article_id, :organisation_id, :person_ids, :article_ids, :organisation_ids)
 end
 
 end

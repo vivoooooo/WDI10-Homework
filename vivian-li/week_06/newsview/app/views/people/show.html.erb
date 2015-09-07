@@ -3,6 +3,10 @@
 	<%= image_tag @person.image, :class => 'feature' %>
 	<li>Birth date : <%= @person.birthday %></li>
 	<li>Profile : <%= @person.profile %></li>
+	<li> Belongs to the following organisations : <ul>
+	     <% @person.organisations.each do |org| %>
+	     <li><%= link_to org.name, org %></li>
+	     <% end %>
 	</ul>
 
 

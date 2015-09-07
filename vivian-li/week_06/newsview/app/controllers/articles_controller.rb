@@ -25,6 +25,9 @@ class ArticlesController < ApplicationController
   def update
     article = Article.find params[:id]
     article.update article_params
+      article.person_ids = params[:article][:person_ids]
+      article.organisation_ids = params[:article][:organisation_ids]
+      article.save  
     redirect_to article
   end 
 
@@ -36,7 +39,7 @@ class ArticlesController < ApplicationController
 
     private
   def article_params
-    params.require(:article).permit(:headline_english, :headline_other_language, :author_english, :image, :author_other_language, :source_english, :source_other_language, :date_published, :date_accessed, :link, :article_text_english, :article_other_language, :screen_capture, :keywords, :issues, :own_notes, :article_id, :person_id, :organisation_id ) 
+    params.require(:article).permit(:headline_english, :headline_other_language, :author_english, :image, :author_other_language, :source_english, :source_other_language, :date_published, :date_accessed, :link, :article_text_english, :article_other_language, :screen_capture, :keywords, :issues, :own_notes, :article_id, :person_id, :organisation_id, :person_ids, :article_ids, :organisation_ids ) 
   end
 
 
