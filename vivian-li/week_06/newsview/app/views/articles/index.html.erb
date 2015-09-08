@@ -1,5 +1,14 @@
 <h2>Articles</h2>
 
+
+<%= form_tag articles_results_path, :method => 'get' do %>
+  <p>
+    <%= text_field_tag :query, params[:query] %>
+    <%= submit_tag "Search Articles", :article_text_english => nil %>
+  </p>
+<% end %>
+
+
 <ul>
 	<% @articles.each do |article| %>
 	<li><%= link_to article.headline_english, article %></li>

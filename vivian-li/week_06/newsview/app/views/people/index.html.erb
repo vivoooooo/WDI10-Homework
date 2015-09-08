@@ -1,5 +1,12 @@
 <h2>People</h2>
 
+<%= form_tag people_results_path, :method => 'get' do %>
+  <p>
+    <%= text_field_tag :query %>
+    <%= submit_tag "Search Person", :name => nil %>
+  </p>
+<% end %>
+
 <ul>
 	<% @people.each do |person| %>
 	<li><%= link_to person.name, person %></li>

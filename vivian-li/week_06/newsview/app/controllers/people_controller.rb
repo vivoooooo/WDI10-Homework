@@ -37,7 +37,12 @@ class PeopleController < ApplicationController
     redirect_to person
   end   
 
+  def search
+  end
 
+  def results
+    @people = Person.where("name ILIKE ? OR profile ILIKE ?", "%#{ params[:query] }%", "%#{ params[:query] }%")
+  end
 
   private
   def person_params

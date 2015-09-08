@@ -40,6 +40,12 @@ class OrganisationsController < ApplicationController
 
    end
 
+   def results
+        @organisations = Organisation.where("name ILIKE ? OR profile ILIKE ?", "%#{ params[:query] }%", "%#{ params[:query] }%")
+  end
+   
+
+
    private
   def organisation_params
     params.require(:organisation).permit(:name, :year, :image, :profile, :person_id, :article_id, :organisation_id, :person_ids, :article_ids, :organisation_ids)
