@@ -16,7 +16,22 @@ class ArticlesController < ApplicationController
     article = Article.create article_params
     redirect_to article
   end 
+   
+  def create
+    @article = Article.new article_params
 
+    if params[:file]
+    response = Cloudinary::Uploader.upload params[:file]
+    @article.screen_capture = response["url"]
+  elsif params[:article][:screen_capture]
+    @article.screen_capture = params[:article][:screen_capture]
+  end 
+  @article.save
+
+  redirect_to @article 
+end
+
+  
 
   def edit
     @article = Article.find params[:id]
@@ -45,7 +60,7 @@ class ArticlesController < ApplicationController
   
     private
   def article_params
-    params.require(:article).permit(:headline_english, :headline_other_language, :author_english, :image, :author_other_language, :source_english, :source_other_language, :date_published, :date_accessed, :link, :article_text_english, :article_other_language, :screen_capture, :keywords, :issues, :own_notes, :article_id, :person_id, :organisation_id, :person_ids, :article_ids, :organisation_ids ) 
+    params.require(:article).permit(:headline_english, :headline_other_language, :author_english, :author_other_language, :source_english, :source_other_language, :date_published, :date_accessed, :link, :article_text_english, :article_other_language, :keywords, :issues, :own_notes) 
   end
 
 

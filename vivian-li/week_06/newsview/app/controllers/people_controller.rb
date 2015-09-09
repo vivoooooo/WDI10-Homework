@@ -13,11 +13,22 @@ class PeopleController < ApplicationController
     @person = Person.new 
   end
 
- 
+
+
   def create
-    person = Person.create person_params
-    redirect_to person
-  end   
+    @person = Person.new person_params
+
+    if params[:file]
+      response = Cloudinary::Uploader.upload params[:file]
+      @person.image = response["url"]
+    elsif params[:person][:image]
+      @person.image = params[:person][:image]
+    end
+
+    @person.save
+
+    redirect_to @person
+    end  
 
   def edit
     @person = Person.find params[:id]
@@ -37,16 +48,22 @@ class PeopleController < ApplicationController
     redirect_to person
   end   
 
-  def search
-  end
+
 
   def results
     @people = Person.where("name ILIKE ? OR profile ILIKE ?", "%#{ params[:query] }%", "%#{ params[:query] }%")
   end
 
+
   private
   def person_params
-    params.require(:person).permit(:name, :birthday, :image, :profile, :person_id, :article_id, :organisation_id, :person_ids, :article_ids, :organisation_ids)
-end
+    params.require(:person).permit(:name, :birthday, :profile)
+  end
 
-end
+ end
+ 
+
+
+
+
+

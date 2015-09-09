@@ -1,3 +1,22 @@
-// Place all the styles related to the people controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+body {
+ background: hotpink;
+}
+
+.posts {
+	width: 400px;
+	margin: 0 auto;
+}
+
+.post {
+	background: white;
+	padding: 10px;
+	margin-bottom: 20px;
+	border-radius: 5px;
+	box-shadow: 5px 5px 0 lightslategrey, inset 20px 20px 0 gainsboro, inset -10px 5px 0 lavender;
+
+}
+
+.post img {
+     max-width: 100%;
+
+}

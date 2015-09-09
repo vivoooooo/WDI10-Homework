@@ -15,11 +15,20 @@ class OrganisationsController < ApplicationController
   end
 
   def create
-    organisation = Organisation.create organisation_params
-    redirect_to organisation
+    @organisation = Organisation.new organisation_params
+
+    if params[:file]
+    response = Cloudinary::Uploader.upload params[:file]
+    @organisation.image = response["url"]
+  elsif params[:organisation][:image]
+    @organisation.image = params[:organisation][:image]
   end
 
- 
+  @organisation.save
+   redirect_to @organisation 
+   end 
+
+    
 
   def edit
     @organisation = Organisation.find params[:id]  
@@ -48,7 +57,7 @@ class OrganisationsController < ApplicationController
 
    private
   def organisation_params
-    params.require(:organisation).permit(:name, :year, :image, :profile, :person_id, :article_id, :organisation_id, :person_ids, :article_ids, :organisation_ids)
+    params.require(:organisation).permit(:name, :year, :profile)
 end
 
 end

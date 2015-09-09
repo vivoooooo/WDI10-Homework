@@ -48,7 +48,7 @@ Rails.application.routes.draw do
 	get '/people/results' => 'people#results'
 	get '/organisations/results' => 'organisations#results'
 
-
+ 
 	  get '/users/edit' => 'users#edit', :as => :edit_user
  resources :articles, :people, :organisations
  resources :users, :except => [:edit] 

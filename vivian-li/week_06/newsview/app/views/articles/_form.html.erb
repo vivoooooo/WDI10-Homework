@@ -1,82 +1,92 @@
-<%= form_for @article do |f| %>
+<%= form_for @article, :html => { :multipart => true } do |f| %>
+
+
  <p>
-	<%= f.label :headline_english %>
-	<%= f.text_field :headline_english %>
+	<%= f.label "Headline English :"%>
+	<%= f.text_area :headline_english %>
  </p>
 
  <p>
-	<%= f.label :headline_other_language  %>
-	<%= f.text_field :headline_other_language %>
+	<%= f.label "Headline Foreign :"  %>
+	<%= f.text_area :headline_other_language %>
  </p>
 
 
   <p>
-	<%= f.label :author_english  %>
+	<%= f.label "Author English :"  %>
 	<%= f.text_field :author_english %>
   </p>
 
    <p>
-	<%= f.label :author_other_language %>
+	<%= f.label "Author Foreign :" %>
 	<%= f.text_field :author_other_language %>
    </p>
 
 
    <p>
-	<%= f.label :source_english %>
+	<%= f.label "Source English :" %>
 	<%= f.text_field :source_english %>
    </p>
 
     <p>
-	<%= f.label :author_other_language %>
-	<%= f.text_field :author_other_language %>
+	<%= f.label "Source Foreign :" %>
+	<%= f.text_field :source_other_language %>
    </p>
 
      <p>
-	<%= f.label :date_published, 'Date Published' %>
+	<%= f.label :date_published, 'Date Published :' %>
 	<%= f.date_field :date_published, :placeholder => 'YYYY-MM-DD' %>
     </p>
 
 
      <p>
-	<%= f.label :date_accessed, 'Date Accessed' %>
+	<%= f.label :date_accessed, 'Date Accessed :' %>
 	<%= f.date_field :date_accessed, :placeholder => 'YYYY-MM-DD' %>
     </p>
 
     <p>
-	<%= f.label :link %>
+	<%= f.label "Article URL :" %>
 	<%= f.text_field :link%>
    </p>
 
     <p>
-	<%= f.label :article_text_english %>
+	<%= f.label "Article Text English :" %>
 	<%= f.text_area :article_text_english %>
    </p>
 
     <p>
-	<%= f.label :article_other_language %>
+	<%= f.label "Article Foreign :" %>
 	<%= f.text_area :article_other_language %>
    </p>
 
     <p>
-	<%= f.label :screen_capture %>
+    <%= f.label "Upload Your Screen Capture/Image :" %>
+    <%= f.cl_image_upload :file %>
+  </p>
+
+    <p>
+	<%= f.label "Screen Capture/Image :"%>
 	<%= f.text_field :screen_capture %>
    </p>
 
    <p>
-	<%= f.label :keywords %>
+	<%= f.label "Keywords :" %>
 	<%= f.text_field :keywords %>
    </p>
 
    <p>
-	<%= f.label :issues %>
+	<%= f.label "Issues :" %>
 	<%= f.text_field :issues %>
    </p>
 
    <p>
-	<%= f.label :own_notes %>
+	<%= f.label "Personal Notes :" %>
 	<%= f.text_area :own_notes %>
    </p>
-
+   
+    <p>
+    <%= f.label "People :" %>	
+    </p> 
    <p>
      <%= hidden_field_tag "article[person_ids][]", nil %>
    <% Person.all.each do |person| %>
@@ -84,7 +94,9 @@
      <%= label_tag dom_id(person), person.name %> 
     <% end %>  	
    </p>
-
+    <p>
+    <%= f.label "Organisations :" %>	
+    </p> 
 	<p>
 	  <%= hidden_field_tag "article[organisation_ids][]", nil %>
 	<% Organisation.all.each do |organisation| %>

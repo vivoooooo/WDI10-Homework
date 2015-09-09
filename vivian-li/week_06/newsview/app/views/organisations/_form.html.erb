@@ -1,34 +1,45 @@
-<%= form_for @organisation do |f| %>
-<p>
-	<%= f.label :name %>
+<%= form_for @organisation, :html => { :multipart => true } do |f| %>
+   <p>
+	<%= f.label "Name :" %>
 	<%= f.text_field :name %>
-</p>
+  </p>
 
-<p>
-    <%= f.label :year %>
+   <p>
+    <%= f.label "Year founded :"  %>
     <%= f.text_field :year %>
-</p>
+  </p>
 
-<p>
-	<%= f.label :image %>
+   <p>
+    <%= f.label "Your image :" %>
+    <%= f.cl_image_upload :file %>
+  </p>
+
+
+   <p>
+	<%= f.label "Image URL :" %>
 	<%= f.text_field :image %>
-</p>
+  </p>
 
-<p>
-	<%= f.label :profile %>
-	<%= f.text_field :profile %>
-</p>
+   <p>
+	<%= f.label "Profile :" %>
+	<%= f.text_area :profile %>
+   </p>
 
-<p>
+    <p>
+    <%= f.label "People:" %>
+   </p>
+
+
+    <p>
     <%= hidden_field_tag "organisation[person_ids][]", nil %>
     <% Person.all.each do |person| %>
     <%= check_box_tag "organisation[person_ids][]", person.id, @organisation.person_ids.include?(person.id), id: dom_id(person) %>
     <%= label_tag dom_id(person), person.name %>
     <% end %>
 
-</p>
+   </p>
 
 
- <%= f.submit %>
+   <%= f.submit %>
 
- <% end  %>   
+   <% end  %>   
