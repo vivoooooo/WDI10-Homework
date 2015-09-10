@@ -1,38 +1,52 @@
-<h2>Headline : <%= @article.headline_english%></h2>	
+<div class="container"> 
+<div class="col-md-8 col-md-offset-1">
+<h2><%= @article.headline_english%></h2>	
 
 	<ul>
-	<li><%= image_tag @article.screen_capture, :class => 'feature' %></li>
-	<li>Headline: <%= @article.headline_english %></li>
-	<li>Headline (foreign): <%= @article.headline_other_language%></li>	
-	<li>Author English : <%= @article.author_english %></li>	
-	<li>Source : <%= @article.source_english  %></li>	
-	<li>Date Published : <%= @article.date_published.strftime "%A, %e %B %Y" if @article.date_published %></li>
-	<li>Date Accessed : <%= @article.date_accessed.strftime "%A, %e %B %Y" if @article.date_accessed %></li>
-	<li>Link: <%= link_to @article.link, @article.link %></li>
-	<li>Article Text : <%= @article.article_text_english %></li>
-	<li>Keywords : <%=@article.keywords %></li> 
-	<li>Issues : <%=@article.issues %></li>
-	<li>My notes : <%=@article.own_notes%></li>
-	<li>People : <ul>
+	<p><%= image_tag @article.screen_capture, :class => 'feature' %></p>
+	<%  unless @article.headline_other_language.empty? %>
+    	<p><strong>Headline (Foreign): </strong><%= @article.headline_other_language %></p>	
+	<% end %>
+	<p><strong>Author English : </strong><%= @article.author_english %></p>	
+	<% unless @article.author_other_language.empty?%>
+    <p><strong>Author (Foreign): </strong><%= @article.author_other_language %></p>
+    <% end %>
+	<p><strong>Source : </strong><%= @article.source_english  %></p>	
+	<% unless @article.source_other_language.empty? %>
+	<p><strong>Source (Foreign) : </strong><% @article.source_other_language %></p>
+      <% end %>
+    <p><strong>Date Published : </strong><%= @article.date_published.strftime "%A, %e %B %Y" if @article.date_published %></p>
+	<p><strong>Date Accessed : </strong><%= @article.date_accessed.strftime "%A, %e %B %Y" if @article.date_accessed %></p>
+	<p><strong>Link: </strong><%= link_to @article.link, @article.link %></p>
+
+	<p><pre><%= @article.article_text_english %></pre> </p>
+
+	<p><strong>Keywords : </strong><%=@article.keywords %></p> 
+	<p><strong>Issues : </strong><%=@article.issues %></p>
+	<p><strong>My notes : </strong><%=@article.own_notes%></p>
+	<p><strong>People : </strong><ul>
 		<% @article.people.each do |person| %>
 		<li><%= link_to person.name, person %></li>
 		<% end %>
 		</ul>
-	</li>	
-	<li> Organisations : <ul>
+	</p>	
+	<p><strong>Organisations : </strong><ul>
 	     <% @article.organisations.each do |org| %>
 	     <li><%= link_to org.name, org %></li>
 	     <% end %>
+	     </ul>
+	    </p>
 	</ul>
 
 
 
-
-<div class="controls">
-		<%= link_to 'Edit', edit_article_path(@article) %>
-		<%= button_to 'Delete', @article, :method => 'delete', :data => { :confirm => "Are you sure?" } %>
+<div class="col-md-8 col-md-offset-1">
+<div class="btn-group ">
+		<%= button_to 'Edit', edit_article_path(@article), :class => "btn btn-primary dropdown-toggle", :method => :get %>
+		<%= button_to 'Delete', @article, :method => 'delete', :data => { :confirm => "Are you sure?" }, :class => "btn btn-danger dropdown-toggle" %>
 </div>	
-
+</div>
+</div>
 
 
 

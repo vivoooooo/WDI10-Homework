@@ -1,20 +1,11 @@
 <% unless @people.empty? %>
-    <ul>
+
         <% @people.each do |person| %>
-        <li>
-            <ul>
-                <li>
-                    <%= person.name %>
-                </li>
-                <li>
-                    <%= link_to(image_tag(person.image), person) %>
-                </li>
-            </ul>
-        </li>
+         <p><strong><%= person.name %></strong></p>
+        <p><%= link_to(image_tag(person.image), person) %></p>
+            <% end %>
+            <% else  %>
+        <h3>No results found please try again </h3>
         <% end %>
-    </ul>
-<% else  %>
-    <h3>No results found!!! </h3>
-<% end %>
 
 

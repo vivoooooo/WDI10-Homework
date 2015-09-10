@@ -29,4 +29,3 @@ o1.people << p1
 o2.people << p2
 
 
-

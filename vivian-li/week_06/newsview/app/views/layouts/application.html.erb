@@ -8,29 +8,73 @@
 </head>
 <body>
 
-<nav>
-  <%= link_to 'Home', '/' %>
-  <% if @current_user.present? %>
-    <%= link_to "Edit profile", edit_user_path %>
-    <%= link_to "Logout #{ @current_user.name }", login_path, :method => 'delete', :data => { :confirm => 'Are you sure you wish to logout?' } %>
+  
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+   
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+     
+        <li><%= link_to 'Home', '/' %></li>
+        <li>   <% if @current_user.present? %>
+    <%= link_to "Edit profile", edit_user_path %></li>
+  <li> <%= link_to "Logout #{ @current_user.name }", login_path, :method => 'delete', :data => { :confirm => 'Are you sure you wish to logout?' } %></li>
   <% else %>
-    <%= link_to 'Create Account', new_user_path %>
-    <%= link_to 'Login', login_path %>
+   <li> <%= link_to 'Create Account', new_user_path %></li>
+  <li> <%= link_to 'Login', login_path %></li>
   <% end %>
+      
+        <li class="dropdown">
+     
+          <ul class="dropdown-menu">
+         </ul>
+        </li>
+      </ul>
+    
+
+
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Articles<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><%= link_to 'All', articles_path %></li>
+            <li><%= link_to 'New Article', new_article_path %></li>
+            </ul>
+        </li>
+                <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">People<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><%= link_to 'All', people_path %></li>
+            <li><%= link_to 'New Person', new_person_path %></li>
+            </ul>
+        </li>
+                <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Organisations<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><%= link_to 'All', organisations_path %></li>
+            <li><%= link_to 'New Organisation', new_organisation_path %></li>
+            </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
 </nav>
 
-<ul>
-<%= link_to 'Articles', articles_path %>
-<%= link_to 'New Article', new_article_path %>
-<%= link_to 'People', people_path %>
-<%= link_to 'New Person', new_person_path %>
-<%= link_to 'Organisations', organisations_path %>
-<%= link_to 'New Organisation', new_organisation_path %>
-</ul>
-
-
-<div class ="output"> 
-<%= yield %>
+  <div class="container">
+    <%= yield %>
+  </div>
 </div>
 
 

@@ -1,112 +1,117 @@
-<%= form_for @article, :html => { :multipart => true } do |f| %>
 
 
- <p>
-	<%= f.label "Headline English :"%>
-	<%= f.text_area :headline_english %>
- </p>
 
- <p>
-	<%= f.label "Headline Foreign :"  %>
-	<%= f.text_area :headline_other_language %>
- </p>
+<div class="col-md-6 col-md-offset-3">
+  <%= form_for @article, :html => { :multipart => true, :class => "form-group" } do |f| %>
 
+    <div class="form-group">
+    	<%= f.label "Headline English :" %>
+    	<%= f.text_area :headline_english, :class => 'form-control' %>
+    </div>
 
-  <p>
-	<%= f.label "Author English :"  %>
-	<%= f.text_field :author_english %>
-  </p>
-
-   <p>
-	<%= f.label "Author Foreign :" %>
-	<%= f.text_field :author_other_language %>
-   </p>
+    <div class="form-group">
+    	<%= f.label "Headline Foreign :" %>
+    	<%= f.text_area :headline_other_language, :class => 'form-control' %>
+    </div>
 
 
-   <p>
-	<%= f.label "Source English :" %>
-	<%= f.text_field :source_english %>
-   </p>
+    <div class="form-group">
+  	<%= f.label "Author English :"  %>
+  	<%= f.text_field :author_english, :class => 'form-control'  %>
+     </div>
 
-    <p>
-	<%= f.label "Source Foreign :" %>
-	<%= f.text_field :source_other_language %>
-   </p>
+     <div class="form-group">
+  	<%= f.label "Author Foreign :" %>
+  	<%= f.text_field :author_other_language, :class => 'form-control' %>
+    </div>
+    
+    <div class="form-group">
+  	<%= f.label "Source English :" %>
+  	<%= f.text_field :source_english, :class => 'form-control' %>
+   </div>
 
-     <p>
-	<%= f.label :date_published, 'Date Published :' %>
-	<%= f.date_field :date_published, :placeholder => 'YYYY-MM-DD' %>
-    </p>
+    <div class="form-group">
+  	<%= f.label "Source Foreign :" %>
+  	<%= f.text_field :source_other_language, :class => 'form-control' %>
+    </div>
 
-
-     <p>
-	<%= f.label :date_accessed, 'Date Accessed :' %>
-	<%= f.date_field :date_accessed, :placeholder => 'YYYY-MM-DD' %>
-    </p>
-
-    <p>
-	<%= f.label "Article URL :" %>
-	<%= f.text_field :link%>
-   </p>
-
-    <p>
-	<%= f.label "Article Text English :" %>
-	<%= f.text_area :article_text_english %>
-   </p>
-
-    <p>
-	<%= f.label "Article Foreign :" %>
-	<%= f.text_area :article_other_language %>
-   </p>
-
-    <p>
-    <%= f.label "Upload Your Screen Capture/Image :" %>
-    <%= f.cl_image_upload :file %>
-  </p>
-
-    <p>
-	<%= f.label "Screen Capture/Image :"%>
-	<%= f.text_field :screen_capture %>
-   </p>
-
-   <p>
-	<%= f.label "Keywords :" %>
-	<%= f.text_field :keywords %>
-   </p>
-
-   <p>
-	<%= f.label "Issues :" %>
-	<%= f.text_field :issues %>
-   </p>
-
-   <p>
-	<%= f.label "Personal Notes :" %>
-	<%= f.text_area :own_notes %>
-   </p>
-   
-    <p>
-    <%= f.label "People :" %>	
-    </p> 
-   <p>
-     <%= hidden_field_tag "article[person_ids][]", nil %>
-   <% Person.all.each do |person| %>
-     <%= check_box_tag "article[person_ids][]", person.id, @article.person_ids.include?(person.id), id: dom_id(person) %>
-     <%= label_tag dom_id(person), person.name %> 
-    <% end %>  	
-   </p>
-    <p>
-    <%= f.label "Organisations :" %>	
-    </p> 
-	<p>
-	  <%= hidden_field_tag "article[organisation_ids][]", nil %>
-	<% Organisation.all.each do |organisation| %>
-	<%= check_box_tag "article[organisation_ids][]", organisation.id, @article.organisation_ids.include?(organisation.id), id: dom_id(organisation) %>
-	<%=  label_tag dom_id(organisation), organisation.name %>
-	<% end %>  	
-   </p>
+     <div class="form-group">
+  	<%= f.label 'Date Published :' %>
+  	<%= f.date_field :date_published, :placeholder => 'YYYY-MM-DD', :class => 'form-control' %>
+    </div> 
 
 
-<%= f.submit %>
+     <div class="form-group">
+  	<%= f.label 'Date Accessed :'%> 
+  	<%= f.date_field :date_accessed, :placeholder => 'YYYY-MM-DD', :class => 'form-control' %> 
+    </div>
 
-<% end %>
+    <div class="form-group">
+  	<%= f.label "Article URL :" %>  
+  	<%= f.text_field :link, :class => 'form-control' %> 
+    </div>
+      
+    <div class="form-group">
+  	<%= f.label "Article Text English :" %>    
+  	<%= f.text_area :article_text_english, :class => 'form-control' %>  
+    </div>
 
+     <div class="form-group">
+  	<%= f.label "Article Foreign :" %>  
+  	<%= f.text_area :article_other_language, :class => 'form-control' %>  
+    </div>
+
+    <div class="form-group">
+      <%= f.label "Upload Your Screen Capture/Image :" %> 
+      <%= f.cl_image_upload :file, :class => 'form-control' %>
+      </div>
+
+
+    <div class="form-group">
+  	<%= f.label "Screen Capture/Image :" %>  
+  	<%= f.text_field :screen_capture, :class => 'form-control' %>
+    </div>
+
+    <div class="form-group">
+  	<%= f.label "Keywords :" %>  
+  	<%= f.text_field :keywords, :class => 'form-control' %>
+    </div>
+
+    <div class="form-group">    
+  	<%= f.label "Issues :" %>  
+  	<%= f.text_field :issues, :class => 'form-control' %>
+    </div>
+
+    <div class="form-group">
+  	<%= f.label "Personal Notes :" %>  
+  	<%= f.text_area :own_notes, :class => 'form-control' %>
+    </div>
+
+      <div class="form-group">
+      <%= f.label "People :" %>  
+
+       <%= hidden_field_tag "article[person_ids][]"%>
+     <% Person.all.each do |person| %>
+       <%= check_box_tag "article[person_ids][]", person.id, @article.person_ids.include?(person.id), id: dom_id(person), :class => 'checkbox' %>
+       <%= label_tag dom_id(person), person.name%> 
+      <% end %>  	
+       <br>
+      </div>
+
+
+      <div class="form-group">
+      <%= f.label "Organisations :"%>	
+    
+      <%= hidden_field_tag "article[organisation_ids][]"%>
+  	<% Organisation.all.each do |organisation| %>
+  	<%= check_box_tag "article[organisation_ids][]", organisation.id, @article.organisation_ids.include?(organisation.id), id: dom_id(organisation), :class => 'checkbox'  %>
+  	<%=  label_tag dom_id(organisation), organisation.name %>
+  	<% end %>  	
+     <br>
+        </div>
+
+     <%= f.submit 'Create Article', :class => 'btn btn-primary' %>
+
+  <% end %>
+
+</div>

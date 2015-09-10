@@ -1,22 +1,44 @@
-<h2>Articles</h2>
+
+
+ <div class="col-sm-6 col-md-7">
+ <div class="page-header">
+
+<h3>Articles</h3>
+
 
 
 <%= form_tag articles_results_path, :method => 'get' do %>
   <p>
-    <%= text_field_tag :query, params[:query] %>
-    <%= submit_tag "Search Articles", :article_text_english => nil %>
+    <div class="col-xs-3">
+
+    <%= text_field_tag :query, params[:query], :class => "form-control" %>
+       </div>
+    <%= submit_tag "Search Articles", :name => nil, :class => "btn btn-default" %>
+    <% end %> 
   </p>
-<% end %>
+      </div>
 
 
-<ul>
-	<% @articles.each do |article| %>
-	<li><%= link_to article.headline_english, article %></li>
-	<%= image_tag article.screen_capture, :class => 'thumb' %>
-	<li>Source: <%= article.source_english %></li>
-	<li>Date published: <%= article.date_published.strftime "%A, %e %B %Y" %></li>
-	<li>Link: <%= link_to article.link, article.link %></li>
+</div>
+</div>
 
+ <div class="container"> 
+
+
+  <div class="col-sm-6 col-md-7">
+    <div class="thumb">
+  	
+  <% @articles.each do |article| %>
+  <div class="PicA"> 
+  	<%= image_tag article.screen_capture, :class => 'thumb' %>
+  </div> 	
+      <div class="caption">
+        <h4><%= link_to article.headline_english, article %></h4>
+      <p>	Source: <%= article.source_english %> </p>
+	<p>Date published: <%= article.date_published.strftime "%A, %e %B %Y" %></p>
 	<% end %>
-
-</ul>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

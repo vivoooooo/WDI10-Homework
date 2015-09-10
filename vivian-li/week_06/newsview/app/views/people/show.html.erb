@@ -1,16 +1,23 @@
-<h2>Name : <%= @person.name %></h2>	
-	<ul>
+ <div class="col-sm-6 col-md-4">
+<h4><%= @person.name %></h4>	
+	
+	<div class="thumbnail">
 	<%= image_tag @person.image, :class => 'feature' %>
-	<li>Birth date : <%= @person.birthday %></li>
-	<li>Profile : <%= @person.profile %></li>
-	<li> Belongs to the following organisations : <ul>
-	     <% @person.organisations.each do |org| %>
-	     <li><%= link_to org.name, org %></li>
+	</div>
+	 <div class="caption">
+	<p><strong>Birth date : </strong><%= @person.birthday %></p>
+	<p><strong>Profile : </strong><%= @person.profile %></p>
+	 <p><strong>Belongs to the following organisations : </strong></p> 
+	    <p><% @person.organisations.each do |org| %>
+	     <p><%= link_to org.name, org %></p>
 	     <% end %>
-	</ul>
+	
+	     </div>	
+
 
 
 <div class="controls">
-		<%= link_to 'Edit', edit_person_path(@person) %>
-		<%= button_to 'Delete', @person, :method => 'delete', :data => { :confirm => "Are you sure?" } %>
+		<%= button_to 'Edit', edit_person_path(@person), :class => "btn btn-primary dropdown-toggle", :method => :get %>
+		<%= button_to 'Delete', @person, :method => 'delete', :data => { :confirm => "Are you sure?" }, :class => "btn btn-danger dropdown-toggle"  %>
 </div>	
+</div>

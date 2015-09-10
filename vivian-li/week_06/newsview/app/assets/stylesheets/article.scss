@@ -1,22 +1,14 @@
 body {
  background: white;
+ padding-bottom:70px
 }
 
-.articles  {
-	width: 400px;
-	margin: 0 auto;
+.container {
+	padding-bottom:100px;
 }
 
-.article {
-	background: white;
-	padding: 10px;
-	margin-bottom: 20px;
-	border-radius: 5px;
-	box-shadow: 5px 5px 0 lightslategrey, inset 20px 20px 0 gainsboro, inset -10px 5px 0 lavender;
 
-}
-
-.article img {
+.PicA  {
      max-width: 100%;
-
+      overflow: hidden;
 }

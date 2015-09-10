@@ -1,17 +1,38 @@
-<h2>Organisations</h2>
 
+ <div class="col-sm-6 col-md-7">
+  <div class="page-header">
+ <h3>Organisations</h3>
+
+     
 <%= form_tag organisations_results_path, :method => 'get' do %>
-  <p>
-    <%= text_field_tag :query, params[:query] %>
-    <%= submit_tag "Search Organisations", :name => nil %>
-  </p>
-<% end %> 
+<p>
+     <div class="col-xs-3">
+    <%= text_field_tag :query, params[:query], :class => "form-control" %>
+       </div>
+    <%= submit_tag "Search Organisations", :name => nil, :class => "btn btn-default" %>
 
-<ul>
+<% end %> 
+</p>
+   </div>
+
+
+
+
+<div class="container"> 
+
+
+  <div class="col-sm-6 col-md-7">
+    <div class="thumb">
+
+
 	<% @organisations.each do |org| %>
-	<li><%= link_to org.name, org %></li>
+	<p><h4><%= link_to org.name, org %></h4></p>
 	<%= image_tag org.image, :class => 'thumb' %>
-	<li> Year established : <%= org.year%></li>
-	<li>Profile : <%= org.profile %></li>
+	  </div> 	
+      <div class="caption">
+	<p><strong>Year established : </strong><%= org.year%></p>
+	<p><%= org.profile %></p>
+  <br>
 	<% end %>
-</ul>		
+</div>
+</div>		

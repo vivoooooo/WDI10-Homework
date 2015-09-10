@@ -1,0 +1,527 @@
+def index
+    @artists = Artist.all
+  end 
+
+  def show
+    @artist = Artist.find params[:id]
+  end
+
+
+  def new
+    @artist = Artist.new
+  end
+
+  def create
+    artist = Artist.create artist_params
+    redirect_to artist 
+  end 
+
+  def destroy
+    artist = Artist.find params[:id]
+    artist.destroy
+    redirect_to artists_path
+  end 
+
+  def edit
+    @artist = Artist.find params[:id]
+    
+  end 
+
+  def update
+    artist = Artist.find params[:id]
+    artist.update artist_params
+    redirect_to artist
+  end 
+
+  private 
+  def artist_params
+   params.require(:artist).permit(:name, :nationality, :dob, :period, :image) 
+  end
+end
+
+
+
+<p>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+ </p>
+
+  <p>
+  <%= f.label :year %>
+  <%= f.text_field :year %>
+ </p>
+
+ <p>
+  <%= f.label :medium %>
+  <%= f.text_field :medium %>
+ </p>
+ 
+ <p>
+  <%= f.label :style %>
+  <%= f.text_field :style %>
+ </p>
+
+ <p>
+  <%= f.label :image %>
+  <%= f.url_field :image %>
+ </p>
+
+ <p>
+  <label>Artist</label>
+  <%= f.select :artist_id, Artist.all.map { |artist| [ artist.name, artist.id ] }, :include_blank => true %>  
+ </p>   
+ 
+ 
+ <p>
+  <label>Artist</label>
+  <select name ="work[artist_id]">
+  <option></option>
+  <% Artist.all.each do |artist| %>
+  <option value ="<%= artist.id %>"><%= artist.name %></option>
+  <% end %>
+  </select>
+ </p> 
+
+<%= f.submit %>
+<% end %>
+
+
+
+
+1) add 'pry-rails' in Gemfile
+
+2) run 'bundle' in terminal folder
+
+3) 'rake db:create' in your folder
+
+4) rails generate migration create_artists   - it puts stuff into a db folder
+
+a folder is created called 'migrate' in db folder, and then a rb is created with this inside  :
+
+class CreateArtists < ActiveRecord::Migration
+  def change
+    create_table :artists do |t|
+    end
+  end
+end
+
+add what you need in the table inside ie :
+class CreateArtists < ActiveRecord::Migration
+  def change
+    create_table :artists do |t|
+    	t.text :name
+    	t.text :nationality
+    	t.date :dob
+    	t.text :peroid
+    	t.text :image
+    	t.timestamps
+    end
+  end
+end
+
+
+5) database is empty so inorder to do the migration run : 
+ rake db:migrate
+in the terminal in the folder 
+
+
+6) create artist.rb in /app/models 
+then add 
+'class Artist < ActiveRecord::Base
+end
+'
+
+in the file
+
+7) 
+type 'annotate' in folder in terminal to check if it's matched
+
+IF YOU NEED TO CHANGE DO : 
+rake db:rollback`
+DO YOUR CHANGE THEN : 
+`rake db:migrate`
+`annotate`
+
+
+
+8)  go to routes.rb ( in config folder) and add : 
+' resources :artists'
+
+9) rake routes
+
+10) rails generate controller Artists
+
+11) in  artists_controller.rb in the/controllers folder : 
+class ArtistsController < ApplicationController
+	def index
+		@artists = Artist.all
+	end	
+end
+
+12) touch app/views/artists/index.html.erb  (to create index.html.erb)
+then put stuff in it just to text (index page here etc)
+
+13) go to seeds.db in /db and add : 
+Artist.destroy_all 
+
+Artist.create(:name => 'Joan Miro', :nationality => 'Spanish', :dob => '1893/04/20', :period => '20th century', :image => 'http://upload.wikimedia.org/wikipedia/commons/5/5c/Portrait_of_Joan_Miro%2C_Barcelona_1935_June_13.jpg')
+
+
+14) rake db:seed
+
+15) check if it worked by : 
+moma $ rails console
+Loading development environment (Rails 4.2.4)
+[1] pry(main)> Artist.count
+   (0.2ms)  SELECT COUNT(*) FROM "artists"
+=> 1
+[2] pry(main)> Artist.all
+  Artist Load (0.2ms)  SELECT "artists".* FROM "artists"
+=> [#<Artist:0x007fde295b1468
+  id: 1,
+  name: "Joan Miro",
+  nationality: "Spanish",
+  dob: Thu, 20 Apr 1893,
+  period: "20th century",
+  image: "http://upload.wikimedia.org/wikipedia/commons/5/5c/Portrait_of_Joan_Miro%2C_Barcelona_1935_June_13.jpg",
+  created_at: Wed, 02 Sep 2015 00:47:20 UTC +00:00,
+  updated_at: Wed, 02 Sep 2015 00:47:20 UTC +00:00>]
+[3] pry(main)> Artist.pluck:name
+   (0.2ms)  SELECT "artists"."name" FROM "artists"
+=> ["Joan Miro"]
+[4] pry(main)> Artist.first.dob
+  Artist Load (0.3ms)  SELECT  "artists".* FROM "artists"  ORDER BY "artists"."id" ASC LIMIT 1
+=> Thu, 20 Apr 1893
+
+14) put this in index.html.erb
+<h2>Artists</h2>
+
+<ul>
+	<% @artists.each do |artist| %>
+	<li><%= artist.name %></li>
+	<ul>
+	<li><%= image_tag artist.image %></li>
+	<li>Name : <%= artist.name %></li>
+	<li>Nationality: <%= artist.nationality %></li>
+	<li>Date of birth: <%= artist.dob %></li>
+	<li>Peroid: <%= artist.period %></li>
+	</ul>
+	<% end %>
+
+</ul>
+
+15) make file and start putting stuff in  artists.scss in app/views/layouts 
+
+16) go to http://www.strfti.me/  to make the date 'pretty'
+ 
+ paste and copy %A, %e %B %Y and put it in : 
+
+m.dob.strftime "%A, %e %B %Y" in terminal to check
+
+then go to index.html.erb and put  it in :
+	<li>Date of birth: <%= artist.dob.strftime "%A, %e %B %Y" %></li>
+
+17)	change in index.html.erb from '	<li>Name : <%= artist.name %></li>' 
+to : '	<li>Name : <%= link_to artist.name, artist %></li>' 
+
+to add the link to 'artist' page
+
+18) 
+SOME STEPS MISSING : 
+
+
+25?? ) 
+
+make new.html.erb and put the following to create the form to make new artist : 
+<%= form_for @artist do |f| %>
+ <p>
+	<%= f.label :name %>
+	<%= f.text_field :name %>
+ </p>
+
+ <p>
+	<%= f.label :nationality  %>
+	<%= f.text_field :nationality %>
+ </p>
+
+  <p>
+	<%= f.label :dob  %>
+	<%= f.text_field :dob %>
+  </p>
+
+  <p>
+	<%= f.label :period %>
+	<%= f.text_field :period %>
+  </p>
+
+   <p>
+	<%= f.label :image %>
+	<%= f.text_field :image %>
+   </p>
+
+<%= f.submit %>
+
+<% end %>
+
+
+26?) 
+
+add to artist_controller.rb
+
+	private 
+	def artist_params
+	 params.require(:artist).permit(:name, :nationality, :dob, :peroid, :image)	
+	end
+end
+
+
+27?)add in artist_controller.rb 
+	def create
+		artist = Artist.create artist_params
+		redirect_to artist   <-- can just say 'artist' as path as ruby is nice like that 
+	end	
+
+
+30?? ) 
+create _form.html.erb in views/artist 
+
+it creates  a partially filled form 
+
+add :
+<h2>New Artist</h2>
+
+<%= render :partial => :form %> 
+
+no need to put :_form because it automatically renders an underscore form when you say :partial! 
+
+
+
+actually then :
+
+stick what's in show.html.erb all of it in it ie :
+
+<%= form_for @artist do |f| %>
+ <p>
+	<%= f.label :name %>
+	<%= f.text_field :name %>
+ </p>
+
+ <p>
+	<%= f.label :nationality  %>
+	<%= f.text_field :nationality %>
+ </p>
+
+  <p>
+	<%= f.label :dob, 'Date of Birth' %>
+	<%= f.text_field :dob, :placeholder => 'YYYY-MM-DD' %>
+  </p>
+
+  <p>
+	<%= f.label :period  %>
+	<%= f.text_field :period %>
+  </p>
+
+   <p>
+	<%= f.label :image %>
+	<%= f.text_field :image %>
+   </p>
+
+<%= f.submit %>
+
+<% end %>
+
+
+33) IMPORTANT 
+put this in teriminal to  migrate the works 
+
+rails generate migration create_works
+
+
+a create_works.rb is created inside db/migrate 
+with the following in it : 
+class CreateWorks < ActiveRecord::Migration
+  def change
+    create_table :works do |t|
+    end
+  end
+end
+
+then put : 
+class CreateWorks < ActiveRecord::Migration
+  def change
+    create_table :works do |t|
+    	t.text :title
+    	t.text :year
+    	t.text :medium
+    	t.text :style
+    	t.text :image
+    	t.timestamps
+    end
+  end
+end
+
+
+
+34
+
+moma $ rails generate migration create_works
+      invoke  active_record
+      create    db/migrate/20150902022717_create_works.rb
+
+then : 
+
+moma $ rake db:migrate
+
+35 
+then go to /models and create work.rb
+
+put in : class Work < ActiveRecord::Base
+end
+
+
+then put 'annotate ' to check
+
+36
+
+then go to terminal to check if it's all good :
+
+moma $ rails console
+Loading development environment (Rails 4.2.4)
+[1] pry(main)> Work.all
+  Work Load (3.2ms)  SELECT "works".* FROM "works"
+=> []
+[2] pry(main)>
+
+
+37
+go to seed.rb in db/migrate and put in :
+
+
+Work.destroy_all
+
+Work.create(:title => 'The Flight of the Dragonfly in Front of the Sun', :year => '1968', :medium => 'oil on canvas', :style => 'Abstract Art', :image => 'http://uploads0.wikipaintings.org/images/joan-miro/the-flight-of-the-dragonfly-in-front-of-the-sun.jpg')
+
+38)
+
+then go to terimnal : 
+rake db:seed
+
+then check : 
+moma $ rake routes
+     Prefix Verb   URI Pattern                 Controller#Action
+    artists GET    /artists(.:format)          artists#index
+            POST   /artists(.:format)          artists#create
+ new_artist GET    /artists/new(.:format)      artists#new
+edit_artist GET    /artists/:id/edit(.:format) artists#edit
+     artist GET    /artists/:id(.:format)      artists#show
+            PATCH  /artists/:id(.:format)      artists#update
+            PUT    /artists/:id(.:format)      artists#update
+            DELETE /artists/:id(.:format)      artists#destroy
+39) 
+
+then go to routes.rb 
+
+type in : 
+Rails.application.routes.draw do
+  resources :artists, :works 
+end
+
+ie add :works to the end of resources 
+
+40)
+
+then terminal : 
+rails generate controller Works index show new edit 
+
+to create all the html files in views/Works 
+
+41)
+
+this happens : in route.rb
+
+Rails.application.routes.draw do
+  get 'works/index'
+
+  get 'works/show'
+
+  get 'works/new'
+
+  get 'works/edit'
+
+  resources :artists, :works 
+end
+
+
+get rid of all the 'get'
+
+so it's 
+
+Rails.application.routes.draw do
+  resources :artists, :works 
+end
+
+
+40) IMPORTANT 
+COMMAND P brings up menu to search for files within your sublime stuff MAKES LIFE EASIER 
+
+41) go to works_controller.rb
+
+
+
+55? )
+
+moma $ rails generate migration add_artist_id_to_works
+      invoke  active_record
+      create    db/migrate/20150902044425_add_artist_id_to_works.rb
+moma $
+
+
+56) 
+go to 
+/migrate _add_artis_id_to_works.rb
+fill in  : 
+
+class AddArtistIdToWorks < ActiveRecord::Migration
+  def change
+  	add_column :works, :artist_id, :integer
+  end
+end
+
+
+57) 
+then 
+
+rake db:migrate
+
+
+58) INSERT ASSOCIATION IN YOUR MODELS 
+
+at artist.rb in /models
+class Artist < ActiveRecord::Base
+	has_many :works
+end
+
+
+then in work.rb in /models 
+
+
+class Work < ActiveRecord::Base
+	belongs_to :artist 
+end
+
+
+
+
+TO KNOW : 
+how to use map 
+
+[5] pry(main)> [1,2,3,4].map do |n|
+[5] pry(main)*   n + 7
+[5] pry(main)* end
+=> [8, 9, 10, 11]
+[6] pry(main)>
+
+
+[3] pry(main)> artist.all.map do |artist|
+[3] pry(main)*   [artist.name, artist.id]
+[3] pry(main)* end

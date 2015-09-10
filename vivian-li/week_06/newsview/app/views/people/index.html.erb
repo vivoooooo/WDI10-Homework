@@ -1,21 +1,33 @@
-<h2>People</h2>
+ <div class="col-sm-6 col-md-7">
+  <div class="page-header">
+<h3>People</h3>
 
 <%= form_tag people_results_path, :method => 'get' do %>
   <p>
-    <%= text_field_tag :query %>
-    <%= submit_tag "Search Person", :name => nil %>
-  </p>
-<% end %>
+  <div class="col-xs-3">
+    <%= text_field_tag :query, params[:query], :class => "form-control" %>
+    </div>
+    <%= submit_tag "Search Person", :name => nil, :class => "btn btn-default" %>
+ <% end %>
+ </p>
+   </div>
 
-<ul>
+<div class="container"> 
+
+	<div class="row">
+  <div class="col-sm-6 col-md-7">
+    <div class="thumb">
+
 	<% @people.each do |person| %>
-	<li><%= link_to person.name, person %></li>
+<p><h4><%= link_to person.name, person %></h4></p>
 	<%= image_tag person.image, :class => 'thumb' %>
-	<li>Birth date: <%= person.birthday %></li>
-	<li>Profile: <%= person.profile %></li>
-
+	   </div> 	
+	    <div class="caption">
+	<p><strong>Birth date: </strong><%= person.birthday %></li>
+	<p><%= person.profile %></p>
+	 <br>
 	<% end %>
-
-</ul>	
+   </div>
+   </div>
 
 

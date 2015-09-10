@@ -1,21 +1,12 @@
 <% unless @organisations.empty? %>
-<ul>
+
     <% @organisations.each do |organisation| %>
-    <li>
-        <ul>
-            <li>
-                <%= organisation.name %>
-            </li>
-            <li>
-                <%= link_to(image_tag(organisation.image), organisation) %>
-            </li>
-        </ul>
-    </li>
-    <% end %>
-</ul>
-<% else  %>
-<h3>No results found for organisations!!! </h3>
-<% end %>
+      <p><strong><%=link_to organisation.name, organisation %></strong></p>
+        <p><%= link_to(image_tag(organisation.image), organisation) %></p>
+     <% end %>
+     <% else  %>
+    <h3>No results found please try again</h3>
+   <% end %>
 
 
 

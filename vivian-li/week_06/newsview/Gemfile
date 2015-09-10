@@ -39,6 +39,8 @@ group :development, :test do
   gem 'cloudinary'
 
   gem 'pry-rails'
+
+  gem 'bootstrap-sass'
 end
 
 group :development do

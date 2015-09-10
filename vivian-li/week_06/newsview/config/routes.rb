@@ -41,7 +41,7 @@
 #
 
 Rails.application.routes.draw do
-	root :to => 'articles#index'
+	root :to => 'pages#index'
 
 	# search stuff
 	get '/articles/results' => 'articles#results'
